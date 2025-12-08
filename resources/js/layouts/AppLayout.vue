@@ -3,9 +3,9 @@ import AppHeader from '@/components/AppHeader.vue';
 </script>
 
 <template>
-    <div class="flex h-full w-full flex-col">
+    <div class="mx-auto flex h-full w-full flex-col">
         <AppHeader />
-        <main class="flex-1">
+        <main class="mx-auto flex-1 md:max-w-6xl">
             <slot />
         </main>
     </div>

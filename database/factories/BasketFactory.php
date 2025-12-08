@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class ProductFactory extends Factory
+class BasketFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,13 +17,10 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::inRandomOrder()->first();
+
         return [
-            'name' => fake()->words(
-                fake()->numberBetween(1, 5),
-                true
-            ),
-            'price' => fake()->randomFloat(2, 1, 100),
-            'stock_quantity' => fake()->numberBetween(1, 100),
+            'user_id' => $user->id,
         ];
     }
 }

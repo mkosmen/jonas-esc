@@ -38,10 +38,22 @@ export interface User {
 
 export type BreadcrumbItemType = BreadcrumbItem;
 
+export interface Basket {
+    id: number;
+    user_id: number;
+    products?: Product[];
+}
+
 export interface Product {
     id: number;
-    stock_id: string;
     name: string;
     price: number;
     stock_quantity: number;
+    pivot: BasketProduct;
+}
+
+export interface BasketProduct {
+    basket_id: number;
+    product_id: number;
+    quantity: number;
 }
