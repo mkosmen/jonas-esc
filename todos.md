@@ -1,0 +1,11 @@
+# Simple e-commerce shopping cart system
+- [ ] Users should be able to browse products
+- [ ] Users should be able to add them to a cart
+- [ ] Users should be able to update quantities
+- [ ] Users should be able to remove items
+- [ ] Each product should have a name
+- [ ] Each product should have a price
+- [ ] Each product should have a stock_quantity.
+- [ ] Each shopping cart must be associated with the authenticated user
+- [ ] Low Stock Notification (When a product's stock is running low, a Laravel Job/Queue should be triggered to send an email to a dummy admin user)
+- [ ] Daily Sales Report (Implement a scheduled job (cron) that runs every evening and sends a report of all products sold that day to the email of the dummy admin user)
