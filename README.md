@@ -14,5 +14,3 @@ composer run dev
 php artisan migrate
 php artisan db:seed
 ```
-
-All fake users have same password : 123456789
