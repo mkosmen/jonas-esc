@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CheckLowStock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -43,6 +44,7 @@ class BasketController extends Controller
 
             $user->basket->update(['purchased_at' => now()]);
             Cache::set($user->id, 'purchased');
+            CheckLowStock::dispatch($user->basket);
 
             return to_route('basket.success');
         } catch (\Throwable $th) {
@@ -59,7 +61,7 @@ class BasketController extends Controller
             return to_route('home');
         }
 
-        // Cache::forget($user->id);
+        Cache::forget($user->id);
 
         return inertia('Success');
     }
