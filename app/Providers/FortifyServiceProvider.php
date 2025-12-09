@@ -52,6 +52,8 @@ class FortifyServiceProvider extends ServiceProvider
             'canRegister' => Features::enabled(Features::registration()),
             'status' => $request->session()->get('status'),
         ]));
+
+        Fortify::registerView(fn () => Inertia::render('auth/Register'));
     }
 
     /**
