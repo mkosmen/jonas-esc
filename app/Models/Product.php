@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -23,5 +25,11 @@ class Product extends Model
     public function baskets(): BelongsToMany
     {
         return $this->belongsToMany(Basket::class);
+    }
+
+    #[Scope]
+    protected function hasRemaining(Builder $query): void
+    {
+        $query->where('stock_quantity', '>', 0);
     }
 }

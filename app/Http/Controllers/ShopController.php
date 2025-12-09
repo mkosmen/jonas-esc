@@ -12,7 +12,7 @@ class ShopController extends Controller
     public function index(Request $request): Response
     {
         $user = $request->user();
-        $products = Product::all();
+        $products = Product::hasRemaining()->get();
         $user = $user->load(['basket', 'basket.products']);
         $user->basket()->firstOrCreate();
 
@@ -45,9 +45,17 @@ class ShopController extends Controller
         }
 
         if ($role === 1) {
-            $product->pivot->increment('quantity');
-        } else {
+            if ($product->stock_quantity > $product->pivot->quantity) {
+                $product->pivot->increment('quantity');
+            }
+
+            return;
+        }
+
+        if ($product->pivot->quantity > 1) {
             $product->pivot->decrement('quantity');
+        } else {
+            $product->pivot->delete();
         }
     }
 }
